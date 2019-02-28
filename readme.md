@@ -1,7 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 
-##value-calculator
+## value-calculator
 
 This calculator uses simple pairwise comparisons to help you rank a set of properties according to how much you personally value them.
 
