@@ -1,9 +1,7 @@
 import React from "react";
 
-//A modular form for adding or removing values
+//A modular form for adding or removing input fields
 class Form extends React.Component {
-  
-
   //STATE------------------------------------------------------------------
   state = {
     inputArr: [""]
@@ -13,19 +11,19 @@ class Form extends React.Component {
 
   //the input fields are numbered, and when the value of the fields change
   //this function will update the appropriate value in inputArr
-  handleInputChange = (e) => {
+  handleInputChange = e => {
     e.preventDefault();
     let inputArr = [...this.state.inputArr];
     inputArr[e.target.id] = e.target.value;
-    this.setState({inputArr})
-  }
+    this.setState({ inputArr });
+  };
 
   addLine = e => {
     e.preventDefault();
     this.setState(prevState => {
-      return ({
+      return {
         inputArr: [...prevState.inputArr, ""]
-      });
+      };
     });
   };
 
@@ -33,16 +31,19 @@ class Form extends React.Component {
     e.preventDefault();
     this.setState(prevState => {
       prevState.inputArr.pop(); //remove an element
-      return ({
+      return {
         inputArr: [...prevState.inputArr]
-      });
+      };
     });
   };
 
-  handleSubmit = (e) => {
+  //does two things: 
+  //calls the event handler in App.jsx
+  //updates the array of values in App.jsx
+  formSubmit = e => {
     e.preventDefault();
-    console.log("formsubmit");
-  }
+    this.props.formSubmit();
+  };
 
   //RENDER------------------------------------------------------------------------------------
   render() {
@@ -50,25 +51,28 @@ class Form extends React.Component {
     let addLine = this.addLine;
     let removeLine = this.removeLine;
     let handleInputChange = this.handleInputChange;
-    let handleSubmit = this.handleSubmit;
+    let formSubmit = this.formSubmit;
 
     return (
       <form onChange={handleInputChange}>
-        {
-        inputArr.map((val, indexNum) => {
+        {inputArr.map((val, indexNum) => {
           return (
             <div key={indexNum}>
               <br />
-              <label htmlFor={indexNum}>Value #{indexNum+1}</label>
+              <label htmlFor={indexNum}>Value #{indexNum + 1}</label>
               <br />
               <input id={indexNum} type="text" />
               <br />
             </div>
           );
         })}
-        <button onClick={addLine} type="button">Add Line</button>
-        <button onClick={removeLine} type="button">Remove Line</button>
-        <button onClick={handleSubmit}>Submit</button>
+        <button onClick={addLine} type="button">
+          Add Line
+        </button>
+        <button onClick={removeLine} type="button">
+          Remove Line
+        </button>
+        <button onClick={formSubmit}>Submit</button>
       </form>
     );
   }
