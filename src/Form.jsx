@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 //A modular form for adding or removing input fields
 class Form extends React.Component {
@@ -37,9 +37,6 @@ class Form extends React.Component {
     });
   };
 
-  //does two things: 
-  //calls the questionStart function in App.jsx
-  //passes an array containing the form input
   formSubmit = e => {
     e.preventDefault();
     this.props.formSubmit([...this.state.formContents]);

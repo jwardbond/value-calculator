@@ -1,21 +1,20 @@
-import React from "react";
+import React from 'react';
 
-import Form from "./Form.jsx";
-import Questions from "./Questions.jsx";
+import Form from './Form.jsx';
+import Questions from './Questions.jsx';
 
-import Styles from "./styles/App.css";
+// import Styles from "./styles/App.css";
 
 class App extends React.Component {
   //STATE -------------------------------------------------------------------
   state = {
     isFormSubmitted: false,
-    formContents: []
+    formContents: [""]
   };
 
   //EVENT HANDLING-----------------------------------------------------------
-  /*Called in Form.jsx on submit and used to update App.jsx state
-  Form contents need to be stored in state here to be passed as props
-  to questions*/
+  /*Called in Form.jsx on submit and used to update App.jsx state.Form contents need 
+  to be stored in state here to be passed as props to questions.*/
   startQuestions = formContents => {
     console.log(formContents);
     let newState = {
