@@ -28,7 +28,7 @@ class App extends React.Component {
   render() {
     let startQuestions = this.startQuestions;
     let isFormSubmitted = this.state.isFormSubmitted;
-    let formContents = this.formContents;
+    let formContents = this.state.formContents;
 
     console.log(isFormSubmitted);
     return (
