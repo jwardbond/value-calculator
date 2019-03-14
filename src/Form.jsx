@@ -4,25 +4,25 @@ import React from "react";
 class Form extends React.Component {
   //STATE------------------------------------------------------------------
   state = {
-    inputArr: [""]
+    formContents: [""]
   };
 
   //EVENT HANDLERS----------------------------------------------------------
 
   //the input fields are numbered, and when the value of the fields change
-  //this function will update the appropriate value in inputArr
+  //this function will update the appropriate value in formContents
   handleInputChange = e => {
     e.preventDefault();
-    let inputArr = [...this.state.inputArr];
-    inputArr[e.target.id] = e.target.value;
-    this.setState({ inputArr });
+    let formContents = [...this.state.formContents];
+    formContents[e.target.id] = e.target.value;
+    this.setState({ formContents });
   };
 
   addLine = e => {
     e.preventDefault();
     this.setState(prevState => {
       return {
-        inputArr: [...prevState.inputArr, ""]
+        formContents: [...prevState.formContents, ""]
       };
     });
   };
@@ -30,24 +30,24 @@ class Form extends React.Component {
   removeLine = e => {
     e.preventDefault();
     this.setState(prevState => {
-      prevState.inputArr.pop(); //remove an element
+      prevState.formContents.pop(); //remove an element
       return {
-        inputArr: [...prevState.inputArr]
+        formContents: [...prevState.formContents]
       };
     });
   };
 
   //does two things: 
-  //calls the event handler in App.jsx
-  //updates the array of values in App.jsx
+  //calls the questionStart function in App.jsx
+  //passes an array containing the form input
   formSubmit = e => {
     e.preventDefault();
-    this.props.formSubmit();
+    this.props.formSubmit([...this.state.formContents]);
   };
 
   //RENDER------------------------------------------------------------------------------------
   render() {
-    let { inputArr } = this.state;
+    let { formContents } = this.state;
     let addLine = this.addLine;
     let removeLine = this.removeLine;
     let handleInputChange = this.handleInputChange;
@@ -55,7 +55,7 @@ class Form extends React.Component {
 
     return (
       <form onChange={handleInputChange}>
-        {inputArr.map((val, indexNum) => {
+        {formContents.map((val, indexNum) => {
           return (
             <div key={indexNum}>
               <br />
